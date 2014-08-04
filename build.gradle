@@ -1,0 +1,65 @@
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/libs-release" }
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.4.RELEASE")
+    }
+}
+
+apply plugin: 'maven'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'wunderground-api'
+    version =  '0.1.0'
+    manifest {
+        attributes 'wunderground-api': 'Weather Underground API', 'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://repo.spring.io/libs-release" }
+}
+
+dependencies {
+	compile("com.fasterxml.jackson.core:jackson-databind")
+    compile("com.googlecode.ehcache-spring-annotations:ehcache-spring-annotations:1.2.0")
+    compile("joda-time:joda-time")
+    compile("org.apache.commons:commons-lang3:3.1")
+    compile("org.springframework.boot:spring-boot-starter")
+ 	compile("org.springframework.boot:spring-boot-starter-logging")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("net.sf.ehcache:ehcache-core:2.5.2")
+     
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("junit:junit")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
+
+task writePom << {
+    pom {
+        project {
+        	groupId 'com.dugbel.wunderground'
+        	version jar.version
+            inceptionYear '2014'
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+        }
+    }.writeTo("$buildDir/repo-pom.xml")
+}

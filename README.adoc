@@ -1,0 +1,10 @@
+---
+tags: [wunderground-api]
+projects: [wunderground-api]
+---
+:toc:
+:wunderground-api: link:/guides/wunderground/api
+:spring_version: current
+:icons: font
+:source-highlighter: prettify
+:project_id: wunderground-api
