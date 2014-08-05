@@ -54,17 +54,7 @@ public class WeatherUndergroundIntegrationTests {
 	}
 
 	/**
-	 * Test geolookup by postal code
-	 */
-	@Test public void geolookupByPostalCode() {
-		GeolookupResponse response = wu.geolookup("97086");
-		Assert.assertNotNull("GeolookupResponse is null", response);
-		Assert.assertNotNull("GeolookupResponse->Lookup is null",response.getLocation());
-		Assert.assertEquals("City", "Happy Valley", response.getLocation().getCity());
-	}
-
-	/**
-	 * Test geolookup by latitude / longitude
+	 * Test geolookup by latitude and longitude
 	 */
 	@Test public void geolookupByLatLng() {
 		BigDecimal latitude = new BigDecimal(37.50999832);
@@ -73,6 +63,16 @@ public class WeatherUndergroundIntegrationTests {
 		Assert.assertNotNull("GeolookupResponse is null", response);
 		Assert.assertNotNull("GeolookupResponse->Lookup is null",response.getLocation());
 		Assert.assertEquals("City", "Half Moon Bay", response.getLocation().getCity());
+	}
+
+	/**
+	 * Test geolookup by postal code
+	 */
+	@Test public void geolookupByPostalCode() {
+		GeolookupResponse response = wu.geolookup("97086");
+		Assert.assertNotNull("GeolookupResponse is null", response);
+		Assert.assertNotNull("GeolookupResponse->Lookup is null",response.getLocation());
+		Assert.assertEquals("City", "Happy Valley", response.getLocation().getCity());
 	}
 
 	/**

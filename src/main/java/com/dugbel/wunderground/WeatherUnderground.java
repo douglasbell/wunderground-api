@@ -60,12 +60,12 @@ public class WeatherUnderground {
 		url.append(StringUtils.replace(city, " ", "_"));
 		url.append(".json");
 
-		logger.info("Request: " + url.toString());
+		logger.debug("Request: " + url.toString());
 
 		RestTemplate restTemplate = new RestTemplate();
 		Weather weather = restTemplate.getForObject(url.toString(), Weather.class);
 
-		logger.info("Response: " + weather.toString());
+		logger.debug("Response: " + weather.toString());
 
 		return weather;
 	}
@@ -93,12 +93,12 @@ public class WeatherUnderground {
 		url.append(longitude);
 		url.append(".json");
 
-		logger.info("Request: " + url.toString());
+		logger.debug("Request: " + url.toString());
 
 		RestTemplate restTemplate = new RestTemplate();
 		GeolookupResponse response = restTemplate.getForObject(url.toString(), GeolookupResponse.class);
 
-		logger.info("Response: " + response.toString());
+		logger.debug("Response: " + response.toString());
 
 		return response;
 	}
@@ -122,12 +122,12 @@ public class WeatherUnderground {
 		url.append(postalCode);
 		url.append(".json");
 
-		logger.info("Request: " + url.toString());
+		logger.debug("Request: " + url.toString());
 
 		RestTemplate restTemplate = new RestTemplate();
 		GeolookupResponse response = restTemplate.getForObject(url.toString(), GeolookupResponse.class);
 
-		logger.info("Response: " + response.toString());
+		logger.debug("Response: " + response.toString());
 
 		return response;
 	}
