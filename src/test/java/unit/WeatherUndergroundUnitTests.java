@@ -27,7 +27,7 @@ public class WeatherUndergroundUnitTests {
 
 	/** Inject the mocks into the {@link WeatherUnderground} object */
 	@InjectMocks
-	private WeatherUnderground wu = new WeatherUnderground();
+	private WeatherUnderground wu;
 
 	/**
 	 * Initialize the mock
@@ -51,7 +51,7 @@ public class WeatherUndergroundUnitTests {
 	 * Test geolookup by postal code
 	 */
 	@Test public void geolookupByPostalCode() {
-		//System.out.println(wu.geolookup("97086"));
+		System.out.println(wu.geolookup("97086"));
 	}
 
 	/**
