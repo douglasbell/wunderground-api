@@ -45,6 +45,12 @@ dependencies {
     testCompile("junit:junit")
 }
 
+test {
+	testLogging {
+		events 'passed', 'skipped', 'failed'
+	}
+}
+
 task wrapper(type: Wrapper) {
     gradleVersion = '1.11'
 }
