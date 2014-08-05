@@ -36,7 +36,9 @@ dependencies {
     compile("org.apache.commons:commons-lang3:3.1")
     compile("org.springframework.boot:spring-boot-starter")
  	compile("org.springframework.boot:spring-boot-starter-logging")
-    compile("org.springframework.boot:spring-boot-starter-web")
+ 	compile("org.springframework.boot:spring-boot-starter-web") {
+    	 exclude module: "spring-boot-starter-tomcat"
+   	}
     compile("net.sf.ehcache:ehcache-core:2.5.2")
      
     testCompile("org.springframework.boot:spring-boot-starter-test")
@@ -45,21 +47,4 @@ dependencies {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.11'
-}
-
-task writePom << {
-    pom {
-        project {
-        	groupId 'com.dugbel.wunderground'
-        	version jar.version
-            inceptionYear '2014'
-            licenses {
-                license {
-                    name 'The Apache Software License, Version 2.0'
-                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    distribution 'repo'
-                }
-            }
-        }
-    }.writeTo("$buildDir/repo-pom.xml")
 }
