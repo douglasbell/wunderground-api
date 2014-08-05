@@ -83,11 +83,12 @@ public class WeatherUndergroundIntegrationTests {
 		BigDecimal longitude = new BigDecimal(-122.50000000);
 		GeolookupResponse response = wu.geolookup(latitude, longitude);
 		Location location = response.getLocation();
-		Weather weather = wu.getHistoricWeather(new DateTime().minusDays(120), location.getState(), location.getCity());
+		Weather weather = wu.getHistoricWeather(new DateTime(2014, 02, 12, 00, 00, 00), 
+				location.getState(), location.getCity());
 		Assert.assertNotNull("Weather is null", weather);
 		Assert.assertNotNull("Weather->History is null", weather.getHistory());
 		Assert.assertTrue("No Weather->History->DailySummary objects found", weather.getHistory().getDailySummary().size() > 0);
 		DailySummary summary = weather.getHistory().getDailySummary().get(0);
-		Assert.assertEquals("MeanTempF", new Integer(54), summary.getMeanTempF());
+		Assert.assertEquals("MeanTempF", new Integer(48), summary.getMeanTempF());
 	}
 }
