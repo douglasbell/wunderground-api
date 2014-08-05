@@ -4,11 +4,14 @@ import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.dugbel.wunderground.Application;
@@ -28,11 +31,27 @@ import com.dugbel.wunderground.model.weather.Weather;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @IntegrationTest
+@PropertySource("classpath:application.properties")
 public class WeatherUndergroundIntegrationTests {
-
+	
+	/** {@link Environment} */
+	@Autowired
+	private Environment environment;
+	
 	/** {@link WeatherUnderground} */
 	@Autowired
 	private WeatherUnderground wu;
+	
+	/**
+	 * Validate Prerequisites before each test
+	 */
+	@Before
+	public void checkPrerequisites() {
+		Assert.assertNotNull("environment is null", environment);
+		Assert.assertNotNull("wu is null", wu);
+		Assert.assertNotEquals("Please set your wundergroup.api.key property", 
+				environment.getProperty("wunderground.api.key"), "[YOUR KEY HERE]");
+	}
 
 	/**
 	 * Test geolookup by postal code
