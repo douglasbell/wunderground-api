@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -26,6 +27,7 @@ import com.dugbel.wunderground.model.weather.Weather;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
+@IntegrationTest
 public class WeatherUndergroundIntegrationTests {
 
 	/** {@link WeatherUnderground} */
@@ -35,8 +37,7 @@ public class WeatherUndergroundIntegrationTests {
 	/**
 	 * Test geolookup by postal code
 	 */
-	@Test
-	public void geolookupByPostalCode() {
+	@Test public void geolookupByPostalCode() {
 		GeolookupResponse response = wu.geolookup("97086");
 		Assert.assertNotNull("GeolookupResponse is null", response);
 		Assert.assertNotNull("GeolookupResponse->Lookup is null",response.getLocation());
@@ -46,8 +47,7 @@ public class WeatherUndergroundIntegrationTests {
 	/**
 	 * Test geolookup by latitude / longitude
 	 */
-	@Test
-	public void geolookupByLatLng() {
+	@Test public void geolookupByLatLng() {
 		BigDecimal latitude = new BigDecimal(37.50999832);
 		BigDecimal longitude = new BigDecimal(-122.50000000);
 		GeolookupResponse response = wu.geolookup(latitude, longitude);
@@ -59,8 +59,7 @@ public class WeatherUndergroundIntegrationTests {
 	/**
 	 * Test historic weather lookup for a given latitude / longitude
 	 */
-	@Test
-	public void getHistoricWeather() {
+	@Test public void getHistoricWeather() {
 		BigDecimal latitude = new BigDecimal(37.50999832);
 		BigDecimal longitude = new BigDecimal(-122.50000000);
 		GeolookupResponse response = wu.geolookup(latitude, longitude);
